@@ -62,9 +62,11 @@ const choices = [
   import questionsJson from '../data/questions.json';
   import { score, type Question, type Answers } from '../lib/scoring';
   import { track } from '../lib/analytics';
+  import { PROGRESS_KEY, COMPLETED_KEY, clearLegacyStorage } from '../lib/storage';
 
   const questions = questionsJson as Question[];
-  const STORAGE_KEY = 'investor16:progress';
+  const STORAGE_KEY = PROGRESS_KEY;
+  clearLegacyStorage();
   const TOTAL_STEPS = 8;
 
   const form = document.getElementById('quiz') as HTMLFormElement;
@@ -154,7 +156,7 @@ const choices = [
     const s = result.axes.map((a) => a.percent).join('-');
     try {
       sessionStorage.removeItem(STORAGE_KEY);
-      sessionStorage.setItem('investor16:completed', result.code);
+      sessionStorage.setItem(COMPLETED_KEY, result.code);
     } catch {
       /* ignore */
     }

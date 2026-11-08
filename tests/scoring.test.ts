@@ -36,18 +36,18 @@ describe('score', () => {
   // 各軸は寄りが左4問・右4問なので、全部同じ値だと合計は0になり決め手で決まる
   it('全部+2：合計0、決め手の寄りで決まる', () => {
     const r = score(questions, all(2));
-    // 決め手：時間軸=L(16) リスク=D(11) 判断根拠=N(3) 群れ=C(6)
-    expect(r.code).toBe('LDNC');
+    // 決め手：時間軸=P(16) リスク=G(11) 判断根拠=R(3) 群れ=A(6)
+    expect(r.code).toBe('PGRA');
     expect(r.axes.every((a) => a.total === 0 && a.percent === 50)).toBe(true);
   });
 
   it('全部−2：決め手の逆側', () => {
-    expect(score(questions, all(-2)).code).toBe('SAFT');
+    expect(score(questions, all(-2)).code).toBe('QBIW');
   });
 
   it('全部0：決め手も0なので全軸左', () => {
     const r = score(questions, all(0));
-    expect(r.code).toBe('SANC');
+    expect(r.code).toBe('QBRA');
     expect(r.axes.map((a) => a.percent)).toEqual([50, 50, 50, 50]);
   });
 
@@ -58,7 +58,7 @@ describe('score', () => {
       ans[q.id] = q.lean === axis.left.letter ? 2 : -2;
     }
     const r = score(questions, ans);
-    expect(r.code).toBe('SANC');
+    expect(r.code).toBe('QBRA');
     expect(r.axes.map((a) => a.total)).toEqual([16, 16, 16, 16]);
     expect(r.axes.map((a) => a.percent)).toEqual([100, 100, 100, 100]);
   });
@@ -70,7 +70,7 @@ describe('score', () => {
       ans[q.id] = q.lean === axis.right.letter ? 2 : 0;
     }
     const r = score(questions, ans);
-    expect(r.code).toBe('LDFT');
+    expect(r.code).toBe('PGIW');
     expect(r.axes.map((a) => a.total)).toEqual([-8, -8, -8, -8]);
     expect(r.axes.map((a) => a.percent)).toEqual([75, 75, 75, 75]);
   });
@@ -96,11 +96,11 @@ describe('score', () => {
   }
 
   it('%は四捨五入（合計+7 → 23/32=71.875 → 72）', () => {
-    const qs = questions.filter((q) => q.axis === 'time' && q.lean === 'S');
+    const qs = questions.filter((q) => q.axis === 'time' && q.lean === 'Q');
     const ans: Answers = { ...all(0), [qs[0].id]: 2, [qs[1].id]: 2, [qs[2].id]: 2, [qs[3].id]: 1 };
     const r = score(questions, ans).axes[0];
     expect(r.total).toBe(7);
-    expect(r.letter).toBe('S');
+    expect(r.letter).toBe('Q');
     expect(r.percent).toBe(72);
   });
 });

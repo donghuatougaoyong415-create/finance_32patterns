@@ -7,7 +7,7 @@ import sharp from 'sharp';
 const dir = path.resolve('public/images/characters');
 const sizes = [512, 256];
 
-const files = (await readdir(dir)).filter((f) => /^[SL][AD][NF][CT]\.png$/.test(f));
+const files = (await readdir(dir)).filter((f) => /^[QP][BG][RI][AW]\.png$/.test(f));
 let made = 0;
 for (const file of files) {
   const src = path.join(dir, file);

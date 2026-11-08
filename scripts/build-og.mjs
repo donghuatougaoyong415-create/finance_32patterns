@@ -112,7 +112,7 @@ for (const t of types) {
 }
 
 // ---- 共通：キャッチと4キャラ
-const sample = ['SANT', 'LDFT', 'LAFT', 'SDFC'];
+const sample = ['QBRW', 'PGIW', 'PBIW', 'QGIA'];
 const thumbs = await Promise.all(sample.map((c) => charDataUri(c, 160)));
 const defaultTree = h(
   'div',

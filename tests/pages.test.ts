@@ -19,8 +19,8 @@ describe('タイプ解説用のデータ', () => {
 
 describe('URL', () => {
   it('タイプ解説は /types/{小文字コード}', () => {
-    expect(typePageUrl('SANT')).toBe('/types/sant');
-    expect(getType('sant')?.code).toBe('SANT');
+    expect(typePageUrl('QBRW')).toBe('/types/qbrw');
+    expect(getType('qbrw')?.code).toBe('QBRW');
   });
 });
 

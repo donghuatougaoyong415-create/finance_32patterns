@@ -4,8 +4,354 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
-    { "source": "/_astro/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
-    { "source": "/images/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] },
-    { "source": "/og/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }] }
+    {
+      "source": "/_astro/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    },
+    {
+      "source": "/og/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/result/:old(SANT|sant)",
+      "destination": "/result/QBRW",
+      "statusCode": 301
+    },
+    {
+      "source": "/types/:old(SANT|sant)",
+      "destination": "/types/qbrw",
+      "statusCode": 301
+    },
+    {
+      "source": "/report/:old(SANT|sant)",
+      "destination": "/report/qbrw",
+      "statusCode": 301
+    },
+    {
+      "source": "/og/:old(SANT|sant).png",
+      "destination": "/og/QBRW.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/result/:old(SANC|sanc)",
+      "destination": "/result/QBRA",
+      "statusCode": 301
+    },
+    {
+      "source": "/types/:old(SANC|sanc)",
+      "destination": "/types/qbra",
+      "statusCode": 301
+    },
+    {
+      "source": "/report/:old(SANC|sanc)",
+      "destination": "/report/qbra",
+      "statusCode": 301
+    },
+    {
+      "source": "/og/:old(SANC|sanc).png",
+      "destination": "/og/QBRA.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/result/:old(SAFT|saft)",
+      "destination": "/result/QBIW",
+      "statusCode": 301
+    },
+    {
+      "source": "/types/:old(SAFT|saft)",
+      "destination": "/types/qbiw",
+      "statusCode": 301
+    },
+    {
+      "source": "/report/:old(SAFT|saft)",
+      "destination": "/report/qbiw",
+      "statusCode": 301
+    },
+    {
+      "source": "/og/:old(SAFT|saft).png",
+      "destination": "/og/QBIW.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/result/:old(SAFC|safc)",
+      "destination": "/result/QBIA",
+      "statusCode": 301
+    },
+    {
+      "source": "/types/:old(SAFC|safc)",
+      "destination": "/types/qbia",
+      "statusCode": 301
+    },
+    {
+      "source": "/report/:old(SAFC|safc)",
+      "destination": "/report/qbia",
+      "statusCode": 301
+    },
+    {
+      "source": "/og/:old(SAFC|safc).png",
+      "destination": "/og/QBIA.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/result/:old(SDNT|sdnt)",
+      "destination": "/result/QGRW",
+      "statusCode": 301
+    },
+    {
+      "source": "/types/:old(SDNT|sdnt)",
+      "destination": "/types/qgrw",
+      "statusCode": 301
+    },
+    {
+      "source": "/report/:old(SDNT|sdnt)",
+      "destination": "/report/qgrw",
+      "statusCode": 301
+    },
+    {
+      "source": "/og/:old(SDNT|sdnt).png",
+      "destination": "/og/QGRW.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/result/:old(SDNC|sdnc)",
+      "destination": "/result/QGRA",
+      "statusCode": 301
+    },
+    {
+      "source": "/types/:old(SDNC|sdnc)",
+      "destination": "/types/qgra",
+      "statusCode": 301
+    },
+    {
+      "source": "/report/:old(SDNC|sdnc)",
+      "destination": "/report/qgra",
+      "statusCode": 301
+    },
+    {
+      "source": "/og/:old(SDNC|sdnc).png",
+      "destination": "/og/QGRA.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/result/:old(SDFT|sdft)",
+      "destination": "/result/QGIW",
+      "statusCode": 301
+    },
+    {
+      "source": "/types/:old(SDFT|sdft)",
+      "destination": "/types/qgiw",
+      "statusCode": 301
+    },
+    {
+      "source": "/report/:old(SDFT|sdft)",
+      "destination": "/report/qgiw",
+      "statusCode": 301
+    },
+    {
+      "source": "/og/:old(SDFT|sdft).png",
+      "destination": "/og/QGIW.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/result/:old(SDFC|sdfc)",
+      "destination": "/result/QGIA",
+      "statusCode": 301
+    },
+    {
+      "source": "/types/:old(SDFC|sdfc)",
+      "destination": "/types/qgia",
+      "statusCode": 301
+    },
+    {
+      "source": "/report/:old(SDFC|sdfc)",
+      "destination": "/report/qgia",
+      "statusCode": 301
+    },
+    {
+      "source": "/og/:old(SDFC|sdfc).png",
+      "destination": "/og/QGIA.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/result/:old(LANT|lant)",
+      "destination": "/result/PBRW",
+      "statusCode": 301
+    },
+    {
+      "source": "/types/:old(LANT|lant)",
+      "destination": "/types/pbrw",
+      "statusCode": 301
+    },
+    {
+      "source": "/report/:old(LANT|lant)",
+      "destination": "/report/pbrw",
+      "statusCode": 301
+    },
+    {
+      "source": "/og/:old(LANT|lant).png",
+      "destination": "/og/PBRW.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/result/:old(LANC|lanc)",
+      "destination": "/result/PBRA",
+      "statusCode": 301
+    },
+    {
+      "source": "/types/:old(LANC|lanc)",
+      "destination": "/types/pbra",
+      "statusCode": 301
+    },
+    {
+      "source": "/report/:old(LANC|lanc)",
+      "destination": "/report/pbra",
+      "statusCode": 301
+    },
+    {
+      "source": "/og/:old(LANC|lanc).png",
+      "destination": "/og/PBRA.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/result/:old(LAFT|laft)",
+      "destination": "/result/PBIW",
+      "statusCode": 301
+    },
+    {
+      "source": "/types/:old(LAFT|laft)",
+      "destination": "/types/pbiw",
+      "statusCode": 301
+    },
+    {
+      "source": "/report/:old(LAFT|laft)",
+      "destination": "/report/pbiw",
+      "statusCode": 301
+    },
+    {
+      "source": "/og/:old(LAFT|laft).png",
+      "destination": "/og/PBIW.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/result/:old(LAFC|lafc)",
+      "destination": "/result/PBIA",
+      "statusCode": 301
+    },
+    {
+      "source": "/types/:old(LAFC|lafc)",
+      "destination": "/types/pbia",
+      "statusCode": 301
+    },
+    {
+      "source": "/report/:old(LAFC|lafc)",
+      "destination": "/report/pbia",
+      "statusCode": 301
+    },
+    {
+      "source": "/og/:old(LAFC|lafc).png",
+      "destination": "/og/PBIA.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/result/:old(LDNT|ldnt)",
+      "destination": "/result/PGRW",
+      "statusCode": 301
+    },
+    {
+      "source": "/types/:old(LDNT|ldnt)",
+      "destination": "/types/pgrw",
+      "statusCode": 301
+    },
+    {
+      "source": "/report/:old(LDNT|ldnt)",
+      "destination": "/report/pgrw",
+      "statusCode": 301
+    },
+    {
+      "source": "/og/:old(LDNT|ldnt).png",
+      "destination": "/og/PGRW.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/result/:old(LDNC|ldnc)",
+      "destination": "/result/PGRA",
+      "statusCode": 301
+    },
+    {
+      "source": "/types/:old(LDNC|ldnc)",
+      "destination": "/types/pgra",
+      "statusCode": 301
+    },
+    {
+      "source": "/report/:old(LDNC|ldnc)",
+      "destination": "/report/pgra",
+      "statusCode": 301
+    },
+    {
+      "source": "/og/:old(LDNC|ldnc).png",
+      "destination": "/og/PGRA.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/result/:old(LDFT|ldft)",
+      "destination": "/result/PGIW",
+      "statusCode": 301
+    },
+    {
+      "source": "/types/:old(LDFT|ldft)",
+      "destination": "/types/pgiw",
+      "statusCode": 301
+    },
+    {
+      "source": "/report/:old(LDFT|ldft)",
+      "destination": "/report/pgiw",
+      "statusCode": 301
+    },
+    {
+      "source": "/og/:old(LDFT|ldft).png",
+      "destination": "/og/PGIW.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/result/:old(LDFC|ldfc)",
+      "destination": "/result/PGIA",
+      "statusCode": 301
+    },
+    {
+      "source": "/types/:old(LDFC|ldfc)",
+      "destination": "/types/pgia",
+      "statusCode": 301
+    },
+    {
+      "source": "/report/:old(LDFC|ldfc)",
+      "destination": "/report/pgia",
+      "statusCode": 301
+    },
+    {
+      "source": "/og/:old(LDFC|ldfc).png",
+      "destination": "/og/PGIA.png",
+      "statusCode": 301
+    }
   ]
 }

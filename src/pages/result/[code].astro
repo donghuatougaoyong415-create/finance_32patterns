@@ -108,16 +108,18 @@ const description = `日常のあなた：${type.daily}。投資したら：${ty
   import { AXES } from '../../lib/axes';
   import { parseStrengths } from '../../lib/scoring';
   import { track } from '../../lib/analytics';
+  import { COMPLETED_KEY, clearLegacyStorage } from '../../lib/storage';
 
   // 4軸のバー
   const section = document.getElementById('axes')!;
   const code = section.dataset.code!;
 
   // 診断を終えて来たときだけ test_complete を送る（シェアされたURLを開いた人は数えない）
+  clearLegacyStorage();
   try {
-    if (sessionStorage.getItem('investor16:completed') === code) {
+    if (sessionStorage.getItem(COMPLETED_KEY) === code) {
       track('test_complete', { type: code });
-      sessionStorage.removeItem('investor16:completed');
+      sessionStorage.removeItem(COMPLETED_KEY);
     }
   } catch {
     /* ignore */

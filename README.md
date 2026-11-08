@@ -49,6 +49,19 @@ npm run build    # dist/ に静的サイトを出力
 | `share_click` | `channel`（x / line / copy） | 結果ページのシェアボタン |
 | `affiliate_click` / `report_click` | 任意 | フェーズ3。リンクに `data-track="report_click"` を付けるだけで送られる |
 
+**タイプコードの変更日：2026-11-08。** この日より前の `test_complete` の `type` は旧コード（SANT など）、この日以降は新コード（QBRW など）。集計するときは日付で分けるか、`src/lib/codeMigration.ts` の対応表で旧コードを新コードに読み替える。
+
+## 旧タイプコードからの移行（2026-11-08）
+
+4軸の文字を変えた（S/L→Q/P、A/D→B/G、N/F→R/I、C/T→A/W）。詳細は `CODE_MIGRATION.md`。
+
+- 対応表は `src/lib/codeMigration.ts` の1か所だけ。
+- 旧URL（`/result/SANT`、`/types/sant`、`/report/sant`、`/og/SANT.png`。大文字・小文字とも）は新URLへ 301 で転送する。
+  - Cloudflare Pages：`public/_redirects`
+  - Vercel：`vercel.json` の `redirects`
+  - どちらも `node scripts/build-redirects.mjs` で生成する（手で直さない）。
+- 途中保存のキーは `investor16:progress_v2` / `investor16:completed_v2`。旧キーは読まずに消す。
+
 ## デプロイ
 
 ### Cloudflare Pages
@@ -67,11 +80,13 @@ npm run build    # dist/ に静的サイトを出力
 
 ### 公開後の確認
 
-- X の投稿画面に `/result/SANT` のURLを貼り、キャラのOGP画像が出るか確かめる。
+- X の投稿画面に `/result/QBRW` のURLを貼り、キャラのOGP画像が出るか確かめる。
+- `/result/SANT?s=72-61-58-80` を開き、`/result/QBRW?s=72-61-58-80` に転送されるか確かめる。
 - Lighthouse（モバイル）：開発環境の計測では全ページ Performance 99〜100。
 
 ## 進捗
 
 - [x] フェーズ1：Astro＋Tailwind、データJSON、`scoring.ts`＋テスト、`/test`、`/result/{CODE}`、キャラ画像の配置
 - [x] フェーズ2：トップ、タイプ解説・一覧、OGP画像、GA4、運営情報ページ（プレースホルダー）、デプロイ設定
+- [x] タイプコードを新コード（QBRW など）に移行し、旧URLを転送
 - [ ] フェーズ3：有料レポート・アフィリエイト・広告枠
