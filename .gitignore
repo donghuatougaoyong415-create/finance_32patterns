@@ -6,3 +6,5 @@ dist/
 !.env.example
 # ビルド時に生成する縮小版
 public/images/characters/*.webp
+# ビルド時に生成するOGP画像
+public/og/

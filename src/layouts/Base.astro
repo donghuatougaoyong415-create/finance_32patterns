@@ -4,12 +4,26 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  /** サイト内の絶対パス（例：/og/SANT.png）。省略時は共通のOGP画像 */
   ogImage?: string;
+  /** 検索結果に出さないページ */
+  noindex?: boolean;
 }
 
-const { title, description = '日常の32問に答えるだけで、投資したらどのタイプかが分かる「投資家16タイプ診断」。', ogImage } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site);
-const og = ogImage ? new URL(ogImage, Astro.site).href : undefined;
+const SITE_NAME = '投資家16タイプ診断';
+const {
+  title,
+  description = '日常の32問に答えるだけで、投資したらどのタイプかが分かる「投資家16タイプ診断」。登録不要・約3分。',
+  ogImage = '/og/default.png',
+  noindex = false,
+} = Astro.props;
+// build.format: 'file' のため、パスから .html と末尾の index を除いて正規のURLにする
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/').replace(/(.)\/$/, '$1') || '/';
+const canonical = new URL(path, Astro.site).href;
+const og = new URL(ogImage, Astro.site).href;
+const gaId = import.meta.env.PUBLIC_GA_ID as string | undefined;
+const fontHref = 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap';
+const year = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -20,26 +34,65 @@ const og = ogImage ? new URL(ogImage, Astro.site).href : undefined;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#f5f0e6" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE_NAME} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    {og && <meta property="og:image" content={og} />}
-    <meta name="twitter:card" content={og ? 'summary_large_image' : 'summary'} />
+    <meta property="og:image" content={og} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={og} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- フォントは描画を止めないよう後から適用する（届くまでは端末の日本語フォント） -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
-    />
+    <link rel="stylesheet" href={fontHref} media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href={fontHref} /></noscript>
+    {gaId && (
+      <script is:inline define:vars={{ gaId }}>
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', gaId);
+        // 表示を優先し、計測スクリプトはページの読み込み後に取りに行く
+        addEventListener('load', function () {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+          document.head.appendChild(s);
+        });
+      </script>
+    )}
   </head>
-  <body class="min-h-dvh bg-paper text-ink">
-    <header class="mx-auto flex max-w-xl items-center px-4 pt-4">
-      <a href="/" class="text-sm font-bold tracking-wide text-ink-soft">投資家16タイプ診断</a>
+  <body class="flex min-h-dvh flex-col bg-paper text-ink">
+    <header class="mx-auto flex w-full max-w-xl items-center justify-between px-4 pt-4">
+      <a href="/" class="text-sm font-bold tracking-wide text-ink-soft">{SITE_NAME}</a>
+      <a href="/types" class="text-xs text-ink-soft underline-offset-4 hover:underline">16タイプ一覧</a>
     </header>
-    <main class="mx-auto max-w-xl px-4 pb-16">
+    <main class="mx-auto w-full max-w-xl flex-1 px-4 pb-16">
       <slot />
     </main>
+    <footer class="border-t border-line bg-paper-deep">
+      <nav class="mx-auto flex max-w-xl flex-wrap justify-center gap-x-5 gap-y-2 px-4 py-6 text-xs text-ink-soft">
+        <a href="/" class="py-1">トップ</a>
+        <a href="/test" class="py-1">診断する</a>
+        <a href="/types" class="py-1">16タイプ一覧</a>
+        <a href="/about" class="py-1">運営者情報</a>
+        <a href="/privacy" class="py-1">プライバシーポリシー</a>
+        <a href="/tokushoho" class="py-1">特定商取引法に基づく表記</a>
+      </nav>
+      <p class="pb-6 text-center text-xs text-ink-soft">© {year} {SITE_NAME}</p>
+    </footer>
+    <script>
+      import { bindTrackedClicks } from '../lib/analytics';
+      bindTrackedClicks();
+    </script>
   </body>
 </html>

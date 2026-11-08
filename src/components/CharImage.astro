@@ -1,0 +1,29 @@
+---
+// キャラ画像。WebP（256/512）を使い、未対応ブラウザには元のPNGを出す。
+import { imageUrl } from '../lib/types';
+
+interface Props {
+  code: string;
+  alt: string;
+  /** 表示幅の目安（CSSの sizes 属性） */
+  sizes?: string;
+  class?: string;
+  eager?: boolean;
+}
+
+const { code, alt, sizes = '256px', class: cls = '', eager = false } = Astro.props;
+---
+
+<picture class="contents">
+  <source srcset={`${imageUrl(code, 256)} 256w, ${imageUrl(code, 512)} 512w`} sizes={sizes} type="image/webp" />
+  <img
+    src={imageUrl(code, 512).replace('-512.webp', '.png')}
+    alt={alt}
+    width="512"
+    height="512"
+    class:list={['aspect-square', cls]}
+    loading={eager ? 'eager' : 'lazy'}
+    fetchpriority={eager ? 'high' : 'auto'}
+    decoding="async"
+  />
+</picture>

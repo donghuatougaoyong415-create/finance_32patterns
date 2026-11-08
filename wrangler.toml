@@ -1,0 +1,4 @@
+# Cloudflare Pages の設定（ダッシュボードのGit連携でも、wrangler での直接デプロイでも使える）
+name = "investor16"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-11-01"

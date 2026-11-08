@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "images": "node scripts/build-images.mjs",
+    "images": "node scripts/build-images.mjs && node scripts/build-og.mjs",
     "dev": "npm run images && astro dev",
     "build": "npm run images && astro build",
     "preview": "astro preview",
@@ -12,8 +12,10 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "@tailwindcss/vite": "^4.3.5",
     "astro": "^7.4.7",
+    "satori": "^0.63.2",
     "sharp": "^0.35.5",
     "tailwindcss": "^4.3.5"
   },

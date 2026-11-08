@@ -1,0 +1,27 @@
+---
+// 16タイプを4×4で並べる。タップでタイプ解説へ。
+import CharImage from './CharImage.astro';
+import { TYPES, typePageUrl } from '../lib/types';
+
+interface Props {
+  /** 強調する（＝今見ている）タイプ */
+  current?: string;
+}
+const { current } = Astro.props;
+---
+
+<ul class="grid grid-cols-4 gap-x-2 gap-y-4">
+  {TYPES.map((t) => (
+    <li>
+      <a
+        href={typePageUrl(t.code)}
+        class:list={['block rounded-2xl p-1 text-center', t.code === current && 'bg-paper-deep ring-2 ring-clay']}
+        aria-current={t.code === current ? 'page' : undefined}
+      >
+        <CharImage code={t.code} alt="" sizes="(max-width: 576px) 23vw, 128px" class="w-full rounded-2xl" />
+        <span class="mt-1 block text-xs font-bold tracking-wider">{t.code}</span>
+        <span class="block text-xs leading-tight text-ink-soft">{t.name}</span>
+      </a>
+    </li>
+  ))}
+</ul>

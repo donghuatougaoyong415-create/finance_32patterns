@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+const xUrl = import.meta.env.PUBLIC_X_URL as string | undefined;
+---
+
+<Base title="運営者情報｜投資家16タイプ診断">
+  <article class="prose-page pt-8">
+    <h1>運営者情報</h1>
+    <!-- TODO：運営者名・連絡先を確定させる -->
+    <dl>
+      <dt>サイト名</dt>
+      <dd>投資家16タイプ診断</dd>
+      <dt>運営者</dt>
+      <dd>（TODO：運営者名）</dd>
+      <dt>お問い合わせ</dt>
+      <dd>（TODO：問い合わせ先のメールアドレスまたはフォーム）</dd>
+      {xUrl && (<><dt>X（旧Twitter）</dt><dd><a href={xUrl} target="_blank" rel="noopener">{xUrl}</a></dd></>)}
+    </dl>
+
+    <h2>このサイトについて</h2>
+    <p>日常の32問に答えると、「投資したらどのタイプか」が16タイプで分かる診断です。設問は買い物・旅行・食事など、投資の知識がなくても答えられる内容にしています。</p>
+    <p>診断結果は性格の傾向を楽しむためのもので、特定の金融商品や銘柄の売買を勧めるものではありません。タイプによって運用成績が決まることもありません。</p>
+    <p>回答はお使いのブラウザの中だけで処理し、サーバーには送信・保存しません。</p>
+  </article>
+</Base>

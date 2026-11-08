@@ -22,8 +22,8 @@ const choices = [
       <span>あてはまる度合いを選んでください</span>
       <span><span id="step-num">1</span>/8</span>
     </div>
-    <div class="mt-1 h-2 overflow-hidden rounded-full bg-paper-deep" role="progressbar" aria-valuemin="1" aria-valuemax="8" aria-valuenow="1" id="progress">
-      <div id="progress-bar" class="h-full rounded-full bg-mustard transition-[width] duration-300" style="width: 12.5%"></div>
+    <div class="mt-1 h-2 overflow-hidden rounded-full bg-paper-deep" role="progressbar" aria-label="診断の進み具合" aria-valuemin="1" aria-valuemax="8" aria-valuenow="1" id="progress">
+      <div id="progress-bar" class="h-full rounded-full bg-honey transition-[width] duration-300" style="width: 12.5%"></div>
     </div>
   </div>
 
@@ -61,6 +61,7 @@ const choices = [
 <script>
   import questionsJson from '../data/questions.json';
   import { score, type Question, type Answers } from '../lib/scoring';
+  import { track } from '../lib/analytics';
 
   const questions = questionsJson as Question[];
   const STORAGE_KEY = 'investor16:progress';
@@ -77,15 +78,18 @@ const choices = [
   let answers: Answers = {};
   let step = 1;
 
-  function load() {
+  /** 保存済みの回答があれば true */
+  function load(): boolean {
     try {
       const raw = sessionStorage.getItem(STORAGE_KEY);
-      if (!raw) return;
+      if (!raw) return false;
       const data = JSON.parse(raw);
       answers = data.answers ?? {};
       step = Math.min(Math.max(Number(data.step) || 1, 1), TOTAL_STEPS);
+      return true;
     } catch {
       /* 保存できない環境でも診断はできる */
+      return false;
     }
   }
 
@@ -109,10 +113,11 @@ const choices = [
     backBtn.disabled = step === 1;
     nextBtn.textContent = step === TOTAL_STEPS ? '結果を見る' : '次へ';
     nextBtn.disabled = !stepAnswered(step);
+    track('page_view_test_step', { step });
   }
 
-  // 保存済みの回答をフォームに反映
-  load();
+  // 保存済みの回答をフォームに反映（続きからでなければ診断開始として数える）
+  if (!load()) track('test_start');
   for (const [id, v] of Object.entries(answers)) {
     const input = form.querySelector<HTMLInputElement>(`input[name="q${id}"][value="${v}"]`);
     if (input) input.checked = true;
@@ -149,6 +154,7 @@ const choices = [
     const s = result.axes.map((a) => a.percent).join('-');
     try {
       sessionStorage.removeItem(STORAGE_KEY);
+      sessionStorage.setItem('investor16:completed', result.code);
     } catch {
       /* ignore */
     }

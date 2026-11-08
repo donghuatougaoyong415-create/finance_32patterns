@@ -1,7 +1,7 @@
 import type { InvestorType } from './types';
 
 /** X の文字数（全角=2、URLは一律23）で数える簡易版 */
-function xLength(text: string): number {
+export function xLength(text: string): number {
   let n = 0;
   for (const ch of text) n += /[\u0000-ჿ -‍‐-‟′-‷]/.test(ch) ? 1 : 2;
   return n;
