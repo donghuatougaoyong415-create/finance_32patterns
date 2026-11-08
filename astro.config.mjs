@@ -4,8 +4,8 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  // TODO: ドメインが決まったら PUBLIC_SITE_URL を設定する（OGP・シェアURL・サイトマップの絶対URLに使う）
-  site: process.env.PUBLIC_SITE_URL || 'https://example.com',
+  // PUBLIC_SITE_URL があればそれを優先する（OGP・シェアURL・canonical・サイトマップの絶対URLに使う）
+  site: process.env.PUBLIC_SITE_URL || 'https://investor16.pages.dev',
   output: 'static',
   // /result/QBRW のように末尾スラッシュなしのURLで配信する（Cloudflare Pages / Vercel 共通）
   trailingSlash: 'never',
