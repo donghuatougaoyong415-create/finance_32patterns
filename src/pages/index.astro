@@ -1,0 +1,24 @@
+---
+// TODO（フェーズ2）：キャッチ・16キャラ一覧を備えた正式なトップに作り替える
+import Base from '../layouts/Base.astro';
+import { TYPES, imageUrl } from '../lib/types';
+---
+
+<Base title="投資家16タイプ診断">
+  <section class="pt-10 text-center">
+    <h1 class="text-2xl font-bold leading-snug">日常の32問で分かる<br />あなたが投資したら、どのタイプ？</h1>
+    <p class="mt-3 text-ink-soft">買い物・旅行・食事の質問に答えるだけ。約3分・登録不要。</p>
+    <a
+      href="/test"
+      class="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-clay px-10 font-bold text-paper shadow-sm active:translate-y-px"
+    >診断を始める</a>
+  </section>
+  <ul class="mt-12 grid grid-cols-4 gap-2">
+    {TYPES.map((t) => (
+      <li class="text-center">
+        <img src={imageUrl(t.code, 256)} alt={t.name} width="256" height="256" loading="lazy" class="aspect-square w-full rounded-2xl" />
+        <span class="mt-1 block text-[10px] leading-tight text-ink-soft">{t.name}</span>
+      </li>
+    ))}
+  </ul>
+</Base>

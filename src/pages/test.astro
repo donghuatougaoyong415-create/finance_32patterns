@@ -1,0 +1,165 @@
+---
+import Base from '../layouts/Base.astro';
+import questionsJson from '../data/questions.json';
+import type { Question } from '../lib/scoring';
+
+const questions = questionsJson as Question[];
+const pages = Array.from({ length: 8 }, (_, i) => questions.filter((q) => q.page === i + 1));
+
+// 左が「そう思う」側。丸の大きさは端ほど大きい
+const choices = [
+  { value: 2, label: 'とてもそう思う', size: 'size-12', color: 'border-clay peer-checked:bg-clay' },
+  { value: 1, label: 'そう思う', size: 'size-10', color: 'border-clay peer-checked:bg-clay' },
+  { value: 0, label: 'どちらでもない', size: 'size-8', color: 'border-ink-soft/50 peer-checked:bg-ink-soft' },
+  { value: -1, label: 'そう思わない', size: 'size-10', color: 'border-sage peer-checked:bg-sage' },
+  { value: -2, label: '全くそう思わない', size: 'size-12', color: 'border-sage peer-checked:bg-sage' },
+];
+---
+
+<Base title="診断する｜投資家16タイプ診断">
+  <div class="sticky top-0 z-10 -mx-4 bg-paper/95 px-4 pt-3 pb-2 backdrop-blur">
+    <div class="flex items-center justify-between text-xs text-ink-soft">
+      <span>あてはまる度合いを選んでください</span>
+      <span><span id="step-num">1</span>/8</span>
+    </div>
+    <div class="mt-1 h-2 overflow-hidden rounded-full bg-paper-deep" role="progressbar" aria-valuemin="1" aria-valuemax="8" aria-valuenow="1" id="progress">
+      <div id="progress-bar" class="h-full rounded-full bg-mustard transition-[width] duration-300" style="width: 12.5%"></div>
+    </div>
+  </div>
+
+  <form id="quiz" class="mt-4" novalidate>
+    {pages.map((qs, i) => (
+      <section data-step={i + 1} class:list={['space-y-5', i > 0 && 'hidden']}>
+        {qs.map((q) => (
+          <fieldset class="rounded-3xl border border-line bg-white/50 px-4 pt-4 pb-3" data-qid={q.id}>
+            <legend class="sr-only">質問{q.id}</legend>
+            <p class="text-[17px] font-bold leading-relaxed">{q.text}</p>
+            <div class="mt-4 flex items-center justify-between px-1">
+              {choices.map((c) => (
+                <label class="flex size-12 cursor-pointer items-center justify-center">
+                  <input type="radio" name={`q${q.id}`} value={c.value} class="peer sr-only" aria-label={c.label} />
+                  <span class:list={['block rounded-full border-2 transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-ink', c.size, c.color]} />
+                </label>
+              ))}
+            </div>
+            <div class="mt-1 flex justify-between text-[11px] text-ink-soft">
+              <span class="text-clay">そう思う</span>
+              <span class="text-sage">そう思わない</span>
+            </div>
+          </fieldset>
+        ))}
+      </section>
+    ))}
+
+    <div class="mt-8 flex gap-3">
+      <button type="button" id="back" class="min-h-12 flex-1 rounded-full border border-line font-bold text-ink-soft disabled:opacity-40">戻る</button>
+      <button type="button" id="next" class="min-h-12 flex-[2] rounded-full bg-clay font-bold text-paper disabled:cursor-not-allowed disabled:opacity-40" disabled>次へ</button>
+    </div>
+  </form>
+</Base>
+
+<script>
+  import questionsJson from '../data/questions.json';
+  import { score, type Question, type Answers } from '../lib/scoring';
+
+  const questions = questionsJson as Question[];
+  const STORAGE_KEY = 'investor16:progress';
+  const TOTAL_STEPS = 8;
+
+  const form = document.getElementById('quiz') as HTMLFormElement;
+  const sections = Array.from(form.querySelectorAll<HTMLElement>('section[data-step]'));
+  const nextBtn = document.getElementById('next') as HTMLButtonElement;
+  const backBtn = document.getElementById('back') as HTMLButtonElement;
+  const stepNum = document.getElementById('step-num')!;
+  const progress = document.getElementById('progress')!;
+  const progressBar = document.getElementById('progress-bar')!;
+
+  let answers: Answers = {};
+  let step = 1;
+
+  function load() {
+    try {
+      const raw = sessionStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      answers = data.answers ?? {};
+      step = Math.min(Math.max(Number(data.step) || 1, 1), TOTAL_STEPS);
+    } catch {
+      /* 保存できない環境でも診断はできる */
+    }
+  }
+
+  function save() {
+    try {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ answers, step }));
+    } catch {
+      /* ignore */
+    }
+  }
+
+  function stepAnswered(s: number) {
+    return questions.filter((q) => q.page === s).every((q) => answers[q.id] !== undefined);
+  }
+
+  function render() {
+    sections.forEach((sec) => sec.classList.toggle('hidden', Number(sec.dataset.step) !== step));
+    stepNum.textContent = String(step);
+    progress.setAttribute('aria-valuenow', String(step));
+    progressBar.style.width = `${(step / TOTAL_STEPS) * 100}%`;
+    backBtn.disabled = step === 1;
+    nextBtn.textContent = step === TOTAL_STEPS ? '結果を見る' : '次へ';
+    nextBtn.disabled = !stepAnswered(step);
+  }
+
+  // 保存済みの回答をフォームに反映
+  load();
+  for (const [id, v] of Object.entries(answers)) {
+    const input = form.querySelector<HTMLInputElement>(`input[name="q${id}"][value="${v}"]`);
+    if (input) input.checked = true;
+  }
+  render();
+
+  form.addEventListener('change', (e) => {
+    const input = e.target as HTMLInputElement;
+    if (input.type !== 'radio') return;
+    answers[Number(input.name.slice(1))] = Number(input.value);
+    save();
+    nextBtn.disabled = !stepAnswered(step);
+
+    // 答えた問の次の未回答の問へスクロール
+    const fieldset = input.closest('fieldset');
+    const next = fieldset?.nextElementSibling as HTMLElement | null;
+    if (next && !next.querySelector('input:checked')) {
+      next.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else if (!next && !nextBtn.disabled) {
+      nextBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (!stepAnswered(step)) return;
+    if (step < TOTAL_STEPS) {
+      step++;
+      save();
+      render();
+      window.scrollTo({ top: 0 });
+      return;
+    }
+    const result = score(questions, answers);
+    const s = result.axes.map((a) => a.percent).join('-');
+    try {
+      sessionStorage.removeItem(STORAGE_KEY);
+    } catch {
+      /* ignore */
+    }
+    location.href = `/result/${result.code}?s=${s}`;
+  });
+
+  backBtn.addEventListener('click', () => {
+    if (step === 1) return;
+    step--;
+    save();
+    render();
+    window.scrollTo({ top: 0 });
+  });
+</script>

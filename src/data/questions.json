@@ -1,0 +1,258 @@
+[
+  {
+    "id": 1,
+    "page": 1,
+    "axis": "time",
+    "text": "ゲームやアプリは、すぐに成果が出ないと飽きてしまう",
+    "lean": "S",
+    "decisive": false
+  },
+  {
+    "id": 2,
+    "page": 1,
+    "axis": "risk",
+    "text": "旅行には、念のための物を多めに持っていく",
+    "lean": "D",
+    "decisive": false
+  },
+  {
+    "id": 3,
+    "page": 1,
+    "axis": "basis",
+    "text": "家電を買うときは、スペックや口コミの点数を比べてから決める",
+    "lean": "N",
+    "decisive": true
+  },
+  {
+    "id": 4,
+    "page": 1,
+    "axis": "crowd",
+    "text": "行列ができている店は、きっとおいしいと思う",
+    "lean": "T",
+    "decisive": false
+  },
+  {
+    "id": 5,
+    "page": 2,
+    "axis": "basis",
+    "text": "服や雑貨は、ひと目見て「これだ」と感じたものを買う",
+    "lean": "F",
+    "decisive": false
+  },
+  {
+    "id": 6,
+    "page": 2,
+    "axis": "crowd",
+    "text": "みんなが避けている選択肢ほど、試してみたくなる",
+    "lean": "C",
+    "decisive": true
+  },
+  {
+    "id": 7,
+    "page": 2,
+    "axis": "time",
+    "text": "何年もかけて続けている趣味や習い事がある",
+    "lean": "L",
+    "decisive": false
+  },
+  {
+    "id": 8,
+    "page": 2,
+    "axis": "risk",
+    "text": "欲しいものがあれば、他を我慢してそこに予算を集中させる",
+    "lean": "A",
+    "decisive": false
+  },
+  {
+    "id": 9,
+    "page": 3,
+    "axis": "crowd",
+    "text": "話題のドラマや映画は、流行っているうちに見ておきたい",
+    "lean": "T",
+    "decisive": false
+  },
+  {
+    "id": 10,
+    "page": 3,
+    "axis": "time",
+    "text": "ポイントは貯めるより、すぐに使いたい",
+    "lean": "S",
+    "decisive": false
+  },
+  {
+    "id": 11,
+    "page": 3,
+    "axis": "risk",
+    "text": "大成功することより、失敗しないことのほうが大事だ",
+    "lean": "D",
+    "decisive": true
+  },
+  {
+    "id": 12,
+    "page": 3,
+    "axis": "basis",
+    "text": "初対面の人の印象は、最初の数秒の直感で決まる",
+    "lean": "F",
+    "decisive": false
+  },
+  {
+    "id": 13,
+    "page": 4,
+    "axis": "risk",
+    "text": "初めての店でも、メニューで一番冒険的な料理を頼む",
+    "lean": "A",
+    "decisive": false
+  },
+  {
+    "id": 14,
+    "page": 4,
+    "axis": "basis",
+    "text": "旅行の計画は、移動時間や費用を表にして立てる",
+    "lean": "N",
+    "decisive": false
+  },
+  {
+    "id": 15,
+    "page": 4,
+    "axis": "crowd",
+    "text": "人が群がっているセール会場には、あまり近寄らない",
+    "lean": "C",
+    "decisive": false
+  },
+  {
+    "id": 16,
+    "page": 4,
+    "axis": "time",
+    "text": "今すぐの小さなご褒美より、半年後の大きなご褒美を選ぶ",
+    "lean": "L",
+    "decisive": true
+  },
+  {
+    "id": 17,
+    "page": 5,
+    "axis": "time",
+    "text": "結果がすぐ分かるゲームやくじが好きだ",
+    "lean": "S",
+    "decisive": false
+  },
+  {
+    "id": 18,
+    "page": 5,
+    "axis": "crowd",
+    "text": "周りがみんな始めたアプリは、自分も入れてみる",
+    "lean": "T",
+    "decisive": false
+  },
+  {
+    "id": 19,
+    "page": 5,
+    "axis": "basis",
+    "text": "説明書や利用規約を、ちゃんと読むほうだ",
+    "lean": "N",
+    "decisive": false
+  },
+  {
+    "id": 20,
+    "page": 5,
+    "axis": "risk",
+    "text": "大きなチャンスなら、多少の損は覚悟して飛び込む",
+    "lean": "A",
+    "decisive": false
+  },
+  {
+    "id": 21,
+    "page": 6,
+    "axis": "basis",
+    "text": "レストランは、口コミより店構えの雰囲気で選ぶ",
+    "lean": "F",
+    "decisive": false
+  },
+  {
+    "id": 22,
+    "page": 6,
+    "axis": "risk",
+    "text": "予定は、いつも代わりの案まで考えておく",
+    "lean": "D",
+    "decisive": false
+  },
+  {
+    "id": 23,
+    "page": 6,
+    "axis": "time",
+    "text": "ダイエットや貯金など、結果が出るまで時間がかかることを続けられる",
+    "lean": "L",
+    "decisive": false
+  },
+  {
+    "id": 24,
+    "page": 6,
+    "axis": "crowd",
+    "text": "まだ誰も知らない店やアーティストを見つけるのが好きだ",
+    "lean": "C",
+    "decisive": false
+  },
+  {
+    "id": 25,
+    "page": 7,
+    "axis": "crowd",
+    "text": "迷ったら、多数派の意見に合わせる",
+    "lean": "T",
+    "decisive": false
+  },
+  {
+    "id": 26,
+    "page": 7,
+    "axis": "basis",
+    "text": "何かを決めた理由を、数字を使って説明できる",
+    "lean": "N",
+    "decisive": false
+  },
+  {
+    "id": 27,
+    "page": 7,
+    "axis": "time",
+    "text": "欲しいものは、待つより今すぐ手に入れたい",
+    "lean": "S",
+    "decisive": false
+  },
+  {
+    "id": 28,
+    "page": 7,
+    "axis": "risk",
+    "text": "スマホや財布は、なくしたときのことを考えて対策している",
+    "lean": "D",
+    "decisive": false
+  },
+  {
+    "id": 29,
+    "page": 8,
+    "axis": "risk",
+    "text": "好きなものには、とことんお金や時間をつぎ込む",
+    "lean": "A",
+    "decisive": false
+  },
+  {
+    "id": 30,
+    "page": 8,
+    "axis": "time",
+    "text": "家具や服は長く使えるものを選び、めったに買い替えない",
+    "lean": "L",
+    "decisive": false
+  },
+  {
+    "id": 31,
+    "page": 8,
+    "axis": "crowd",
+    "text": "「みんなが絶賛しているもの」には、つい疑いの目を向ける",
+    "lean": "C",
+    "decisive": false
+  },
+  {
+    "id": 32,
+    "page": 8,
+    "axis": "basis",
+    "text": "理由はうまく言えないが、自分の勘はよく当たると思う",
+    "lean": "F",
+    "decisive": false
+  }
+]

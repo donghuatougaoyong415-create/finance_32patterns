@@ -1,0 +1,162 @@
+[
+  {
+    "code": "SANT",
+    "animal": "cheetah",
+    "name": "追い風のチーター",
+    "daily": "新作スイーツは発売日に、レビューの点数を確かめてから買いに行く",
+    "invest": "数字が良くて勢いのある株に、素早く飛び乗る",
+    "strength": "判断が速く、数字で裏付けできる",
+    "pitfall": "乗り遅れが怖くて、高値でつかむ",
+    "compatible": "SDFT"
+  },
+  {
+    "code": "SANC",
+    "animal": "falcon",
+    "name": "狙い撃ちのハヤブサ",
+    "daily": "閉店間際の値引き品を、元の値段と比べて狙い撃ちする",
+    "invest": "売られすぎた株を、数字で見極めて拾う",
+    "strength": "「安すぎる」を冷静に見抜く",
+    "pitfall": "下がり続ける株を早くつかむ",
+    "compatible": "SDFC"
+  },
+  {
+    "code": "SAFT",
+    "animal": "dolphin",
+    "name": "波乗りのイルカ",
+    "daily": "流行りの店にひと目惚れして、すぐに並ぶ",
+    "invest": "その日の話題の株に、勢いで飛び乗る",
+    "strength": "流れに乗る速さは一番",
+    "pitfall": "熱が冷めた後も降りられない",
+    "compatible": "SDNT"
+  },
+  {
+    "code": "SAFC",
+    "animal": "shark",
+    "name": "嵐を好むサメ",
+    "daily": "みんなが諦めたゲームのボスに、勘を頼りに挑む",
+    "invest": "市場がパニックの日に、勘で大きく買う",
+    "strength": "恐怖に強く、人が逃げる場面で動ける",
+    "pitfall": "根拠のない一発勝負で大けが",
+    "compatible": "SDNC"
+  },
+  {
+    "code": "SDNT",
+    "animal": "bee",
+    "name": "時計じかけのミツバチ",
+    "daily": "家計簿アプリと自分ルールで、小さな節約を積み上げる",
+    "invest": "決めたルールで売買し、損切りも機械的に守る",
+    "strength": "感情に振り回されない",
+    "pitfall": "ルールを増やしすぎて動けなくなる",
+    "compatible": "SAFT"
+  },
+  {
+    "code": "SDNC",
+    "animal": "fox",
+    "name": "計算高いキツネ",
+    "daily": "特売日とポイント倍率を計算して、人の少ない時間に買い物する",
+    "invest": "誰も気づかない値段のゆがみを、小さく確実に取る",
+    "strength": "小さく確実に勝ちを重ねる",
+    "pitfall": "細かい利益にこだわり、大きな流れを逃す",
+    "compatible": "SAFC"
+  },
+  {
+    "code": "SDFT",
+    "animal": "meerkat",
+    "name": "見張り番のミーアキャット",
+    "daily": "新しいアプリは、周りの評判が固まってから少しだけ試す",
+    "invest": "上がり始めを確かめてから、少しだけ乗る",
+    "strength": "大けがをしない",
+    "pitfall": "慎重すぎて、利益がいつも小さい",
+    "compatible": "SANT"
+  },
+  {
+    "code": "SDFC",
+    "animal": "cat",
+    "name": "忍び足のネコ",
+    "daily": "人気店には、空いている平日にこっそり行く",
+    "invest": "下げたところをそっと拾い、さっと引く",
+    "strength": "混雑を避ける嗅覚が鋭い",
+    "pitfall": "待ちすぎて、結局買えない",
+    "compatible": "SANC"
+  },
+  {
+    "code": "LANT",
+    "animal": "beaver",
+    "name": "築城のビーバー",
+    "daily": "伸びそうな趣味に道具をまとめて買い、上達を記録していく",
+    "invest": "伸びる会社に集中して、長く持ち続ける",
+    "strength": "大きく育てる力がある",
+    "pitfall": "割高になっても買い続ける",
+    "compatible": "LDFT"
+  },
+  {
+    "code": "LANC",
+    "animal": "crow",
+    "name": "宝探しのカラス",
+    "daily": "古着屋で、相場と比べて掘り出し物を見つける",
+    "invest": "割安な株に集中し、評価されるまで待つ",
+    "strength": "忍耐強く、目利きができる",
+    "pitfall": "いつまでも評価されない株を抱え続ける",
+    "compatible": "LDFC"
+  },
+  {
+    "code": "LAFT",
+    "animal": "penguin",
+    "name": "空を夢見るペンギン",
+    "daily": "新しいガジェットや技術の話に、つい胸が躍る",
+    "invest": "AIや宇宙など、未来の物語に賭ける",
+    "strength": "大きな変化をつかむ想像力",
+    "pitfall": "物語だけで高い値段を払う",
+    "compatible": "LDNT"
+  },
+  {
+    "code": "LAFC",
+    "animal": "squirrel",
+    "name": "種まきのリス",
+    "daily": "無名のころから応援していたアーティストが、後で売れる",
+    "invest": "地味なうちに先回りして、花開くのを待つ",
+    "strength": "誰より早く価値に気づく",
+    "pitfall": "早すぎて、花開く前に手放す",
+    "compatible": "LDNC"
+  },
+  {
+    "code": "LDNT",
+    "animal": "elephant",
+    "name": "大行進のゾウ",
+    "daily": "定番品を比較サイトで最安にして、まとめ買いする",
+    "invest": "低コストで世界中に分散し続ける",
+    "strength": "誰でも真似できる堅実さ",
+    "pitfall": "退屈で、余計な売買をしたくなる",
+    "compatible": "LAFT"
+  },
+  {
+    "code": "LDNC",
+    "animal": "sheep",
+    "name": "実りのヒツジ",
+    "daily": "ポイントを貯めて、一番お得な使い方を計算する",
+    "invest": "割安な増配株を、じっくり育てる",
+    "strength": "毎年入ってくるお金の柱を作る",
+    "pitfall": "配当の高さに目がいき、減配を見落とす",
+    "compatible": "LAFC"
+  },
+  {
+    "code": "LDFT",
+    "animal": "turtle",
+    "name": "コツコツのカメ",
+    "daily": "毎朝同じルーティンを、何年も続けている",
+    "invest": "何があっても、毎月せっせと積み立てる",
+    "strength": "何年も続けられる",
+    "pitfall": "見直しをせず、放置しすぎる",
+    "compatible": "LANT"
+  },
+  {
+    "code": "LDFC",
+    "animal": "bear",
+    "name": "冬眠のクマ",
+    "daily": "流行には乗らず、気に入った物を長く使う",
+    "invest": "暴落でも動じず、たまにだけ買い増す",
+    "strength": "何があっても動じない",
+    "pitfall": "動かなさすぎて、チャンスを逃す",
+    "compatible": "LANC"
+  }
+]

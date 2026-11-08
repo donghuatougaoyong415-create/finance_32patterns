@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+# ビルド時に生成する縮小版
+public/images/characters/*.webp
